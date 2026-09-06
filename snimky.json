@@ -1,14 +1,21 @@
 {
   "fps": 30,
   "pocet": 1158,
-  "sirka": 1024,
-  "vyska": 576,
+  "sirka": 1920,
+  "vyska": 1080,
   "pripona": "webp",
   "konec": 38.6,
   "mala": {
     "slozka": "snimky-m",
-    "sirka": 640,
-    "vyska": 360,
+    "sirka": 960,
+    "vyska": 540,
     "pocet": 1158
+  },
+  "detail": {
+    "slozka": "detaily",
+    "fps": 10,
+    "pocet": 386,
+    "sirka": 2560,
+    "vyska": 1440
   }
 }
