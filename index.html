@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="cs">
+<html lang="cs" data-nacita>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -11,17 +11,52 @@
       content="LargoVerse — beta simulace finanční aplikace před ostrým startem. Zapiš se na čekací listinu."
     />
     <link rel="icon" href="data:," />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <style>
+      html,body{margin:0;background:#020a12}html[data-nacita],html[data-odhaluje]{overflow:hidden;overscroll-behavior:none}
+      html[data-nacita] #root{visibility:hidden}#nacteni[hidden]{display:none}
+      #nacteni{position:fixed;inset:0;z-index:9999;box-sizing:border-box;background:radial-gradient(ellipse at 50% 43%,#082033 0%,#020a12 65%);color:#d7f2ff;font:14px/1.6 system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:32px;touch-action:pinch-zoom;opacity:1;transition:opacity .45s ease}
+      html[data-odhaluje] #nacteni{opacity:0}
+      .nacteni-nav{position:absolute;top:max(26px,env(safe-area-inset-top));left:6vw;right:6vw;display:flex;justify-content:space-between;border-bottom:1px solid #143044;padding-bottom:22px}
+      .nacteni-kostra{display:block;background:#112b3d;border:1px solid #18384c;border-radius:5px;overflow:hidden;position:relative}
+      .nacteni-kostra::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent,#6ecaff26,transparent);transform:translateX(-100%);animation:nacteni-vlna 2s ease-in-out infinite}
+      .nacteni-nav span:first-child{width:124px;height:12px}.nacteni-nav span:last-child{width:104px;height:24px;border-radius:24px}
+      .nacteni-stred{width:min(100%,430px);text-align:center}.nacteni-znacka{font-size:15px;letter-spacing:.32em;font-weight:500;margin:0 0 42px;padding-left:.32em}
+      .nacteni-radky{display:grid;justify-items:center;gap:13px;margin-bottom:38px}.nacteni-radky span:nth-child(1){width:88%;height:39px}.nacteni-radky span:nth-child(2){width:62%;height:10px}.nacteni-radky span:nth-child(3){width:40%;height:33px;margin-top:15px;border-radius:25px}
+      #nacteni-zprava{margin:0 0 16px;color:#b2cbd9;font-size:14px}#nacteni-postup{display:block;width:100%;height:3px;appearance:none;border:0;background:#163042;border-radius:4px;overflow:hidden}
+      #nacteni-postup::-webkit-progress-bar{background:#163042}#nacteni-postup::-webkit-progress-value{background:#8fd8ff}#nacteni-postup::-moz-progress-bar{background:#8fd8ff}
+      #nacteni-procenta{display:block;font-variant-numeric:tabular-nums;font-size:12px;letter-spacing:.12em;color:#8bafc4;margin-top:12px}
+      #nacteni-akce{margin-top:24px}#nacteni-akce[hidden]{display:none}#nacteni-akce a,#nacteni-akce button{display:inline-block;color:#d7f2ff;font:inherit;background:transparent;border:1px solid #446276;border-radius:24px;padding:10px 16px;text-decoration:none;cursor:pointer;margin:4px}
+      #nacteni[data-chyba] .nacteni-kostra::after{animation:none}#nacteni-akce [hidden]{display:none}
+      @keyframes nacteni-vlna{to{transform:translateX(100%)}}
+      @media(prefers-reduced-motion:reduce){#nacteni{transition:none}.nacteni-kostra::after{animation:none}}
+    </style>
     <title>LargoVerse — čekací listina</title>
-    <script type="module" crossorigin src="./assets/index-D-jUmL6F.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B1gq2rnf.css">
+    <script type="module" crossorigin src="./assets/index-D8fAAN0f.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-WEG-xp0A.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="nacteni" aria-label="Příprava stránky">
+      <div class="nacteni-nav" aria-hidden="true"><span class="nacteni-kostra"></span><span class="nacteni-kostra"></span></div>
+      <div class="nacteni-stred">
+        <p class="nacteni-znacka">LARGOVERSE</p>
+        <div class="nacteni-radky" aria-hidden="true"><span class="nacteni-kostra"></span><span class="nacteni-kostra"></span><span class="nacteni-kostra"></span></div>
+        <p id="nacteni-zprava" role="status">Připravujeme váš příběh.</p>
+        <progress id="nacteni-postup" value="0" max="100" aria-label="Načítání příběhu"></progress>
+        <span id="nacteni-procenta" aria-hidden="true">0 %</span>
+        <div id="nacteni-akce" hidden><a href="">Zkusit znovu</a><button id="nacteni-staticky" type="button">Pokračovat bez animace</button></div>
+      </div>
+    </div>
+    <noscript><style>#nacteni{display:none}</style><p style="color:#eaf3f8;padding:32px">Pro zobrazení příběhu LargoVerse zapněte JavaScript a obnovte stránku.</p></noscript>
+    <div id="root" inert aria-busy="true" tabindex="-1"></div>
+    <script>
+      // I při selhání stahování hlavního skriptu musí zůstat cesta ven.
+      setTimeout(function () {
+        if (document.documentElement.hasAttribute('data-aplikace')) return;
+        document.getElementById('nacteni-zprava').textContent = 'Stránku se nepodařilo načíst. Zkuste obnovit připojení a načíst ji znovu.';
+        document.getElementById('nacteni-akce').hidden = false;
+        document.getElementById('nacteni-staticky').hidden = true;
+        document.getElementById('nacteni').setAttribute('data-chyba', '');
+      }, 15000);
+    </script>
   </body>
 </html>
