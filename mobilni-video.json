@@ -1,0 +1,19 @@
+{
+  "fps": 30,
+  "pocet": 1158,
+  "sirka": 1920,
+  "vyska": 1080,
+  "kodek": "H.264 High, yuv420p",
+  "crf": 28,
+  "gop": 60,
+  "dopredu": {
+    "soubor": "film/pribeh-dopredu-46fec339886ec98d.mp4",
+    "bajty": 21841907,
+    "sha256": "46fec339886ec98d592daa1bbfe66cee73d4921650e04037c9e904564261fda3"
+  },
+  "dozadu": {
+    "soubor": "film/pribeh-dozadu-d3bc69187eaaa6bd.mp4",
+    "bajty": 21961441,
+    "sha256": "d3bc69187eaaa6bd04fcf34f4529af80da98503862d77a8adf24e89e1cdfd778"
+  }
+}
