@@ -38,7 +38,7 @@
       @media(prefers-reduced-motion:reduce){#nacteni{transition:none}.nacteni-kostra::after,.nacteni-strom::before{animation:none}.nacteni-strom video{display:none}}
     </style>
     <title>LargoVerse — čekací listina</title>
-    <script type="module" crossorigin src="./assets/index-C3Bf0d2T.js"></script>
+    <script type="module" crossorigin src="./assets/index-CoZgU12H.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BZJ50BoL.css">
   </head>
   <body>
@@ -53,19 +53,19 @@
           <p class="nacteni-znacka">LARGOVERSE</p>
         </div>
         <div class="nacteni-radky" aria-hidden="true"><span class="nacteni-kostra"></span><span class="nacteni-kostra"></span><span class="nacteni-kostra"></span></div>
-        <p id="nacteni-zprava" role="status">Připravujeme váš příběh.</p>
+        <p id="nacteni-zprava" role="status">Připravujeme tvůj příběh.</p>
         <progress id="nacteni-postup" value="0" max="100" aria-label="Načítání příběhu"></progress>
         <span id="nacteni-procenta" aria-hidden="true">0 %</span>
         <div id="nacteni-akce" hidden><a href="">Zkusit znovu</a><button id="nacteni-staticky" type="button">Pokračovat bez animace</button></div>
       </div>
     </div>
-    <noscript><style>#nacteni{display:none}</style><p style="color:#eaf3f8;padding:32px">Pro zobrazení příběhu LargoVerse zapněte JavaScript a obnovte stránku.</p></noscript>
+    <noscript><style>#nacteni{display:none}</style><p style="color:#eaf3f8;padding:32px">Pro zobrazení příběhu LargoVerse zapni JavaScript a obnov stránku.</p></noscript>
     <div id="root" inert aria-busy="true" tabindex="-1"></div>
     <script>
       // I při selhání stahování hlavního skriptu musí zůstat cesta ven.
       setTimeout(function () {
         if (document.documentElement.hasAttribute('data-aplikace')) return;
-        document.getElementById('nacteni-zprava').textContent = 'Stránku se nepodařilo načíst. Zkuste obnovit připojení a načíst ji znovu.';
+        document.getElementById('nacteni-zprava').textContent = 'Stránku se nepodařilo načíst. Zkus obnovit připojení a načíst ji znovu.';
         document.getElementById('nacteni-akce').hidden = false;
         document.getElementById('nacteni-staticky').hidden = true;
         document.getElementById('nacteni').setAttribute('data-chyba', '');
